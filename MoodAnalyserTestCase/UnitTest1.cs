@@ -100,4 +100,41 @@ public class UnitTest1
             Console.WriteLine(e.Message);
         }
     }
+
+    //TC5.1
+    [TestMethod]
+    public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyseObject_UsingParameterisedConstructor()
+    {
+        object check = new MoodAnalyser("HAPPY");
+        object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", "HAPPY");
+        check.Equals(obj);
+    }
+    //TC5.2
+    [TestMethod]
+    public void GivenImproperClassName_ShouldThrowMoodAnalyserCustomException_UsingParameterisedConstructor()
+    {
+        string check = "Class Not Found";
+        try
+        {
+            object moodAnalyseObject = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", "HAPPY");
+        }
+        catch (MoodAnalyserCustomException e)
+        {
+            Assert.AreEqual(check, e.Message);
+        }
+    }
+    //TC5.3
+    [TestMethod]
+    public void GivenImproperConstructorName_ShouldThrowMoodAnalyserCustomException_UsingParameterisedConstructor()
+    {
+        string check = "Constructor Not Found";
+        try
+        {
+            object moodAnalyseObject = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", "HAPPY");
+        }
+        catch (MoodAnalyserCustomException e)
+        {
+            Assert.AreEqual(check, e.Message);
+        }
+    }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace MoodAnalyserProblem;
 public class MoodAnalyserFactory
 {
+    //UC4
     public static object CreateMoodAnalysis(string className, string constructorName)
     {
         string pattern = @"." + constructorName + "$";
@@ -29,6 +30,29 @@ public class MoodAnalyserFactory
         else
         {
             throw new MoodAnalyserCustomException(MoodAnalyserCustomException.Exceptiontype.NOSUCHMETHOD, "Class Not Found");
+        }
+    }
+
+    //UC5
+    public static object CreateMoodAnalyseUsingParameterizedConstructor(string className, string constructor, string message)
+    {
+        Type type = typeof(MoodAnalyser);
+        if (type.Name.Equals(className) || type.FullName.Equals(className))
+        {
+            if (type.Name.Equals(constructor))
+            {
+                ConstructorInfo constructorInfo = type.GetConstructor(new[] { typeof(string) });
+                object instance = constructorInfo.Invoke(new object[] { "HAPPY" });
+                return instance;
+            }
+            else
+            {
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.Exceptiontype.NOSUCHMETHOD, "Constructor is Not Found");
+            }
+        }
+        else
+        {
+            throw new MoodAnalyserCustomException(MoodAnalyserCustomException.Exceptiontype.NOSUCHCLASS, "Class Not Found");
         }
     }
 }
