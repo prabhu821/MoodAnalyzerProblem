@@ -10,6 +10,8 @@ public class MoodAnalyser
 {
     private string message;
 
+    public MoodAnalyser() { }
+
     public MoodAnalyser(string message)
     {
         this.message = message;
@@ -23,10 +25,14 @@ public class MoodAnalyser
             {
                 throw new MoodAnalyserCustomException(MoodAnalyserCustomException.Exceptiontype.EMPTYMESSAGE, "Mood should not be empty");
             }
-
             if (this.message.Contains("Sad"))
+            {
                 return "Sad";
-            return "Happy";
+            }
+            else
+            {
+                return "Happy";
+            }
         }
         catch (NullReferenceException)
         {

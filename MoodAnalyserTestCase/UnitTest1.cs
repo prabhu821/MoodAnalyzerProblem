@@ -60,4 +60,44 @@ public class UnitTest1
             Assert.AreEqual("Mood should not be empty", e.Message);
         }
     }
+
+    //TC4.1
+    [TestMethod]
+    public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyseObject()
+    {
+        string message = null;
+        object check = new MoodAnalyser(message);
+        object obj = MoodAnalyserFactory.CreateMoodAnalysis("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser");
+        check.Equals(obj);
+    }
+    //TC4.2
+    [TestMethod]
+    public void TestMethodClassNameImproperShouldThrowMoodAnalyserException()
+    {
+        try
+        {
+            object expected = new MoodAnalyser();
+            object obj = MoodAnalyserFactory.CreateMoodAnalysis("erMoodAnalyserProbelm.MoodAnalys", "MoodAnalyser");
+            expected.Equals(obj);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+    //TC4.3
+    [TestMethod]
+    public void TestMethodConstructorNameImproperShouldThrowMoodAnalyserException()
+    {
+        try
+        {
+            object expected = new MoodAnalyser();
+            object obj = MoodAnalyserFactory.CreateMoodAnalysis("MoodAnalyserProbelm.AnalyseMood", "MoodAnalyser");
+            expected.Equals(obj);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
 }
