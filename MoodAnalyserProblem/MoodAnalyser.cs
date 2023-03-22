@@ -19,18 +19,18 @@ public class MoodAnalyser
     {
         try
         {
-            if (this.message.ToLower().Contains("sad"))
+            if (this.message.Equals(string.Empty))
             {
-                return "sad";
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.Exceptiontype.EMPTYMESSAGE, "Mood should not be empty");
             }
-            else
-            {
-                return "happy";
-            }
+
+            if (this.message.Contains("Sad"))
+                return "Sad";
+            return "Happy";
         }
-        catch
+        catch (NullReferenceException)
         {
-            return "happy";
+            throw new MoodAnalyserCustomException(MoodAnalyserCustomException.Exceptiontype.NULLMESSAGE, "Mood should not be null");
         }
     }
 }
