@@ -17,11 +17,18 @@ public class MoodAnalyser
 
     public string AnalyserMood()
     {
-        if (this.message.ToLower().Contains("sad"))
+        try
         {
-            return "sad";
+            if (this.message.ToLower().Contains("sad"))
+            {
+                return "sad";
+            }
+            else
+            {
+                return "happy";
+            }
         }
-        else
+        catch
         {
             return "happy";
         }
