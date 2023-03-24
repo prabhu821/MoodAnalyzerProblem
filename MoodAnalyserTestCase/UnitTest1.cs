@@ -137,4 +137,20 @@ public class UnitTest1
             Assert.AreEqual(check, e.Message);
         }
     }
+    //TC6.1
+    [TestMethod]
+    public void TestMethodShouldReturnHappy()
+    {
+        string expected = "Happy";
+        string mood = MoodAnalyserFactory.InvokedAnalyseMood("Happy", "MoodAnalyse");
+        Assert.AreEqual(expected, mood);
+    }
+    //TC6.2
+    [TestMethod]
+    public void TestMethodMessageWhenImproperMethodShouldThrowMoodAnalysisException()
+    {
+        string expected = "Method is not found";
+        string mood = MoodAnalyserFactory.InvokedAnalyseMood("Happy", "Analyse");
+        Assert.AreEqual(expected, mood);
+    }
 }

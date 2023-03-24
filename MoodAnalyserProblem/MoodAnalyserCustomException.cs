@@ -10,9 +10,11 @@ public class MoodAnalyserCustomException : Exception
 {
     public enum Exceptiontype
     {
-        NULLMESSAGE, EMPTYMESSAGE,
-        NOSUCHFIELD, NOSUCHMETHOD,
-        NOSUCHCLASS, OBJECTCREATIONISSUE
+        NULLMESSAGE, 
+        EMPTYMESSAGE,
+        NOSUCHFIELD, 
+        NOSUCHMETHOD,
+        NOSUCHCLASS, 
     }
     public Exceptiontype type;
     public MoodAnalyserCustomException(Exceptiontype type, string message) : base(message)

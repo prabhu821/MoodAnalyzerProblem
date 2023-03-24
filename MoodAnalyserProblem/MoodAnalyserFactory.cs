@@ -55,4 +55,22 @@ public class MoodAnalyserFactory
             throw new MoodAnalyserCustomException(MoodAnalyserCustomException.Exceptiontype.NOSUCHCLASS, "Class Not Found");
         }
     }
+
+    //UC6
+    public static string InvokedAnalyseMood(string message, string methodName)
+    {
+        try
+        {
+            Type type = Type.GetType("MoodAnalyserProbelm.MoodAnalyser");
+            object moodAnalyseObject = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyserProbelm.MoodAnalyser", "MoodAnalyser", "Happy");
+            MethodInfo analyseMoodInfo = type.GetMethod(methodName);
+            object mood = analyseMoodInfo.Invoke(moodAnalyseObject, null);
+            return mood.ToString();
+        }
+        catch (NullReferenceException)
+        {
+            MoodAnalyserCustomException exp = new MoodAnalyserCustomException(MoodAnalyserCustomException.Exceptiontype.NOSUCHMETHOD, "Method is not found");
+            return exp.Message;
+        }
+    }
 }
